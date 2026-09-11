@@ -4,7 +4,7 @@ A focused collection of PowerShell scripts for Microsoft Graph administration, a
 
 This repository is intentionally more specialized than the general `Scripts` repository. The goal is to keep Graph-related tools together with enough documentation to explain what each script changes, what permissions it may require, how it authenticates, and how it should be used safely in an administrative environment.
 
-## Current Script
+## Scripts
 
 ### [`Repair-Update-MicrosoftGraph.ps1`](./maintenance/Repair-Update-MicrosoftGraph.ps1)
 
