@@ -4,13 +4,52 @@ A focused collection of PowerShell scripts for Microsoft Graph administration, a
 
 This repository is intentionally more specialized than the general `Scripts` repository. The goal is to keep Graph-related tools together with enough documentation to explain what each script changes, what permissions it may require, how it authenticates, and how it should be used safely in an administrative environment.
 
+**If you find anything here useful, please consider donating:**
+
+https://paypal.me/plutoniumshore
+
+## Intended Use
+
+These scripts are intended for administrators and technically inclined users working with Microsoft Graph, Microsoft 365, Entra ID, Intune, Teams, applications, and related Microsoft cloud services.
+
+The repository is meant to go beyond small standalone utilities by keeping Graph-focused scripts together with documentation for authentication, permissions, requirements, expected behavior, and safety considerations.
+
+## Who This Is For
+
+The collection may be useful to:
+
+* Microsoft 365 and Entra ID administrators.
+* Intune and endpoint administrators.
+* Teams and collaboration administrators.
+* Identity and access management engineers.
+* PowerShell administrators maintaining Microsoft Graph automation.
+* Anyone troubleshooting or learning the Microsoft Graph PowerShell SDK.
+
 ## Scripts
 
-### [`Repair-Update-MicrosoftGraph.ps1`](./maintenance/Repair-Update-MicrosoftGraph.ps1)
+| Script | Purpose | Who may find it useful |
+| --- | --- | --- |
+| [`Repair-Update-MicrosoftGraph.ps1`](./maintenance/Repair-Update-MicrosoftGraph.ps1) | Installs, updates, validates, cleans, and repairs the Microsoft Graph PowerShell SDK. | Administrators maintaining Graph PowerShell environments or troubleshooting module, dependency, and version problems. |
 
-Installs, updates, validates, cleans, and repairs the Microsoft Graph PowerShell SDK.
+## Requirements
 
-The script is designed to handle several common Graph PowerShell maintenance problems in one run:
+Requirements vary by script. In general:
+
+* PowerShell 7 is preferred for current Microsoft Graph PowerShell work.
+* Windows PowerShell 5.1 may be supported where practical.
+* Internet access to PowerShell Gallery is required for scripts that install or update modules.
+* Tenant-facing scripts may require Microsoft Graph delegated or application permissions appropriate to the operation being performed.
+* Scripts that require authentication or Graph permissions should document those requirements individually.
+
+## Script Details
+
+### Repair-Update-MicrosoftGraph.ps1
+
+**Purpose**
+
+Installs, updates, validates, cleans, and repairs the Microsoft Graph PowerShell SDK. It is designed to handle common Graph PowerShell maintenance problems in a single run rather than requiring separate installation, update, cleanup, and repair scripts.
+
+The script:
 
 * Detects the installed PowerShell and Graph SDK state.
 * Prefers `Microsoft.PowerShell.PSResourceGet` while retaining a PowerShellGet fallback.
@@ -28,7 +67,7 @@ The script is designed to handle several common Graph PowerShell maintenance pro
 
 The script does **not** connect to a Microsoft 365 tenant, request Graph permissions, or make changes to users, groups, devices, applications, or other tenant resources. It maintains the local Graph PowerShell environment only.
 
-## Usage
+**Run**
 
 Run from PowerShell 7 when possible:
 
@@ -64,7 +103,7 @@ Because the script supports PowerShell `ShouldProcess`, potentially destructive 
 
 ## Repository Organization
 
-The repository is intended to grow by Graph function rather than becoming a miscellaneous script dump. Expected areas include:
+The repository is intended to grow by Graph function rather than becoming a miscellaneous script collection. Expected areas include:
 
 * `maintenance` - Graph SDK installation, updating, validation, repair, and local environment health.
 * `identity` - Users, groups, directory objects, authentication methods, and identity administration.
@@ -76,30 +115,16 @@ The repository is intended to grow by Graph function rather than becoming a misc
 
 Folders will be added as scripts are published rather than created empty in advance.
 
-## Requirements
-
-Requirements vary by script. In general:
-
-* PowerShell 7 is preferred for current Microsoft Graph PowerShell work.
-* Windows PowerShell 5.1 may be supported where practical.
-* Internet access to PowerShell Gallery is required for scripts that install or update modules.
-* Tenant-facing scripts may require Microsoft Graph delegated or application permissions appropriate to the operation being performed.
-* Scripts that require authentication or Graph permissions should document those requirements individually.
-
 ## Safety and Security
 
-Scripts in this repository are intended for administrative use and may eventually include operations capable of changing Microsoft 365 tenant resources. Review a script and its documented permissions before using it in production.
+Scripts in this repository are intended for administrative use and may include operations capable of changing Microsoft 365 tenant resources. Review a script and its documented permissions before using it in production.
 
 Repository scripts should not contain hardcoded credentials, access tokens, private keys, tenant-specific secrets, personal identifiers, private hostnames, or other environment-specific sensitive values. Tenant IDs, application IDs, scopes, paths, and similar values should be supplied dynamically or through parameters when required.
 
-The first published maintenance script performs local PowerShell module maintenance only and does not authenticate to or modify a tenant.
+`Repair-Update-MicrosoftGraph.ps1` performs local PowerShell module maintenance only and does not authenticate to or modify a tenant.
 
 ## Attribution and AI Assistance
 
 Scripts may be created, adapted, reviewed, troubleshot, documented, or refined with assistance from AI tools and may incorporate patterns derived from Microsoft documentation or common PowerShell administrative practices. Where a specific external source materially contributes to a script, it should be identified when practical.
 
 Microsoft Graph, Microsoft 365, PowerShell, and related product names are trademarks of Microsoft Corporation. This repository is an independent collection of administrative scripts and is not affiliated with or endorsed by Microsoft.
-
-**If you find anything here useful, please consider donating:**
-
-https://paypal.me/plutoniumshore
